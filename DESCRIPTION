@@ -1,0 +1,21 @@
+Package: qwRa
+Title: Dynamic Quantitative Wildfire Risk Assessment in R
+Version: 0.0.1
+Authors@R: 
+    person("Tyler", "Hoecker", , "tyler.hoecker@vibrantplanet.net", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: 
+This package provides open-source tools for conducting wildfire risk assessment.
+More info to be added later...
+License: file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports:
+    glue,
+    lubridate,
+    stringr,
+    terra,
+    purrr,
+    dplyr,
+    httr

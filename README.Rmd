@@ -1,0 +1,189 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# pyroRutils
+
+<!-- badges: start -->
+
+<!-- badges: end -->
+
+The goal of pyroRutils is to support efficient, reproducible, and collaborative 
+R workflows for Pyrologix Analysts. This package is a Work In Progress :)
+
+## Installation
+
+You can install the development version of pyroRutils from 
+[GitHub](https://github.com/) with:
+
+``` r
+# Must have devtools installed: install.packages("devtools")
+# If you have SSH credentials set up (?):
+devtools::install_github("pyrologix/pyro-analysts/pyroRutils")
+
+# If you get an error with the above approach, instead:
+# with `pyrologix/pyro-analysts/` as your working directory, run:
+devtools::install("pyroRutils")
+```
+
+## Usage
+
+WIP documentation and examples of usage...
+
+```{r}
+# Replace storage path with a working network drive
+pyroRutils::pull_variable_files(
+  storage_path = file.path("", "Volumes", "_DATA", "Tyler_Transfer", "wx_scenario_monthly_relative_frequency"),
+  variable = "trf"
+)
+```
+
+## Contributing
+
+Everybody is welcome to contribute to the package. Reach out to 
+[@tylerhoecker](https://github.com/tylerhoecker) to discuss how.
+
+### Style
+
+Please use the [tidyverse style guide](https://style.tidyverse.org/). The R
+package [styler](https://styler.r-lib.org/) makes this easy to do. There are
+add-ins and shortcuts in both RStudio and VSCode that will style selected text,
+an entire file, or an entire package. 
+
+### Dependencies
+
+The more dependencies the package has, the more cumbersome it is to maintain, and
+the more vulnerable to outside code breaking. This doesn't mean you shouldn't
+use other packages (you definitely should!), but consider whether or not it
+makes sense to add a dependency to your function, or if it could be expressed
+just as well with existing dependencies or base R. When adding a dependency,
+consider the quality and source. Is it a highly used package that is known and
+used by many and well maintained (e.g. tidyverse packages, data.table, stars),
+or is it a package that somebody wrote a long time ago for their master's thesis
+and has not seen any updates in many years? The former is a safe(r) dependency,
+whereas the latter is more risky.
+
+### Documentation
+
+Please include Roxygen documentation that will allow other users to make use of
+your function. This includes documenting what the function does as well as its
+arguments. See [roxygen2](https://roxygen2.r-lib.org/articles/rd.html) or
+the book [R Packages](https://r-pkgs.org/man.html) for best documentation
+practices.
+
+### Unit tests
+
+EVENTUALLY - All contributions to this package should include unit tests created using the
+[testthat](https://testthat.r-lib.org/). 
+
+### Committing, git history, pull requests, and code review
+
+Below is an example workflow to follow when making a contribution to `vpr`. This
+workflow is independent of the IDE you use to code (e.g. RStudio, VSCode, etc.).
+
+#### 1. Check out your development branch
+
+From `pyroRutils` directory, execute:
+
+``` sh
+git checkout -b 'my-branch'
+```
+
+#### 2. Do your development
+
+As you develop, you should be making small, logically chunked commits
+along the way and pushing to the remote. To make a commit and push it, execute:
+
+``` sh
+git add your_changed_files
+git commit -m "commit message describing changes"
+git push
+```
+
+While you are developing you many want to use your new functions interactively
+to test their behavior, create examples, or develop new functions. The 
+`devtools` package has a fucntion to make your changes available within an R
+session without installing `pyroRutils` each time you make a change:
+
+``` R
+devtools::load_all()
+```
+
+#### 3. Make sure all unit tests pass and documentation is complete
+
+See the above comments regarding testing and documentation. Once you've added
+the appropriate function documentation, to knit it together and run all the unit
+tests in the package, navigate to the `pyroRutils` directory, open an R terminal and 
+call:
+
+``` R
+devtools::document() # re-knits all documentation
+devtools::check() # runs R CMD CHECK on the package
+```
+
+This will give you a report on any failing tests, along with other possible
+style and package structure errors. Iterate until tests pass! If you need help
+debugging other issues, let @nerutenbeck know.
+
+Also note that documentation, style, and tests are run automatically on
+GitHub actions upon opening pull requests.
+
+#### 4. Pull Request and Code Review
+
+When you are ready for code review, open a pull request. At present, you should
+tag @tylerhoecker and one other Analyst.
+
+Let's face it, code review can be intimidating. We are exposing our work to the
+scrutiny and criticism of others, asking them to look for problems. In order to
+make code review easier for everybody, it helps to remember the following
+things:
+
+1. We are all on the same team
+2. We're not in a coding competition
+3. People have different strengths and experience levels
+4. The fastest way to learn is through code review and others' examples
+5. It's better to find a bug in your code at review than at runtime
+
+The reviewers will be looking for concise, clean, efficient, and readable code
+along with good documentation and unit tests that cover sufficient edge cases.
+As a review your job is not just to read and look for bugs. You should pull the
+branch, attempt to install `pyroRutils`, and run the code. A PR is one part 
+making sure we are all aware of each other's work, one part making sure *you* 
+could take over the development/maintenance if the author had to work on 
+something else and one part checking for functionality/bugs/documentation.
+
+__If you are tagged to review code__
+
+1. Review files changed in a browser or locally
+2. Step through examples and tests, ask the author for data sources if you need
+them
+3. Leave comments and questions in the code where necessary using Github tooling
+4. Leave an overall comment and submit your review status on the PR page. This
+can be to aprove the PR or to request changes based on your comments or
+questions.
+5. Notify the author that you have completed your review.
+
+General considerations for reviewing:
+1. Try to be prompt in your review
+2. Say something nice first
+3. Execute the code you review where possible
+4. Ask questions about why something is done a certain way and suggest the
+author add more comments if you are regularly asking "why?"
+5. If you can, offer code that would address a bug or a potential change
+6. Consider the deploy context - how fast does it need to be?
+
+#### 5. Squash and merge
+
+Once your code has been through review and approved, you are ready to squash and
+merge to main. Congrats! You're a `pyroRutils` contributor.
