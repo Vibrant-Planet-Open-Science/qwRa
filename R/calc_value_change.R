@@ -10,14 +10,17 @@
 calc_value_change <- function(
     flps, 
     bp = NULL,
-    hvra,
+    hvra = NULL,
     response_table, 
     type = "conditional"){
 
+        if(!is.null(hvra)){
+            flps <- terra::mask(flps, hvra)
+        }
+
         if(type == "conditional"){
             nvc <- sum(flps * response_table$value)
-        }
-        if(type == "expected"){
+        } else if(type == "expected"){
             nvc <- sum(bp * flps * response_table$value)
         } else {
             print("type not valid; must be conditional or expected")
